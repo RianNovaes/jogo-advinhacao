@@ -1,7 +1,4 @@
-# 25.04.2026
-# Depois de meses quase anos eu voltei e fiz esse sistema somente com 1 dia 
-# relembrando algumas coisa hoje eu só pedi um desafio pro chatGPT
-# e fiz isso tudo de cabeça em um total de 50 minutos
+# data inicial 25.04.2026
 
 import random
 
@@ -17,11 +14,13 @@ while True:
     except ValueError:
         print("Por favor, digite as opções do menu")
         continue
-    
+    # Inicia uma nova partida
     if opcao == 1:
         tentativas = 0
+        # Define o número secreto da partida
         numero = random.randint(1, 100)
         while True:
+            # Conta quantas tentativas o jogador já fez
             tentativas += 1
             try:
                 numero_user = int(input("Tente Advinhar o número: "))
@@ -31,17 +30,18 @@ while True:
             if numero == numero_user:
                 print("Acertou!!")
                 print(f"Você acertou em {tentativas} tentativas")
-                
+                # Registra o resultado da partida no histórico
                 historico.append({
-                "numero": numero,
-                "tentativas": tentativas
+                    "numero": numero,
+                    "tentativas": tentativas
                 })
-                    
                 break
+            
             elif numero_user < numero:
                 print("O número correto é maior")
             elif numero_user > numero:
                 print("O número correto é menor")
+    # Mostra o histórico ao usuário          
     elif opcao == 2:
         print("\n--- Histórico de Jogos ---")
         print("-" * 30)
@@ -50,6 +50,7 @@ while True:
         else:
             for i, jogo in enumerate(historico):
                 print(f"Jogo {i+1}: Número {jogo['numero']} | Tentativas {jogo['tentativas']}")
+    # Encerra o programa
     elif opcao == 3:
         break
     else:
